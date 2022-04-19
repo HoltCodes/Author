@@ -1,9 +1,6 @@
 const Author = require('../models/author.model');
 
-module.exports = {
-
-
-    createAuthor: (req, res)=>{
+    createAuthor: (req, res)=> {
       Author.create(req.body)
         .then((newAuthor)=>{
           console.log(newAuthor);
@@ -12,8 +9,8 @@ module.exports = {
         .catch((err)=>{
           console.log(err);
           res.status(400).json(err);
-        })
-    },
+        });
+    };
 
     getOneAuthor: (req, res)=>{
       Author.findById({_id: req.params.id})
@@ -24,7 +21,7 @@ module.exports = {
         console.log(err);
         res.status(400).json(err);
       })
-    },
+    };
 
     getAllAuthors: (req, res) =>{
       Author.find({})
@@ -35,7 +32,7 @@ module.exports = {
         console.log(err);
         res.status(400).json(err);
       })
-    },
+    };
 
     deleteAuthor: (req, res)=>{
       Author.deleteOne({_id: req.params.id})
@@ -46,7 +43,7 @@ module.exports = {
         console.log(err);
         res.status(400).json(err);
       })
-    },
+    };
 
     editAuthor: (req, res) =>{
       Author.findByIdAndUpdate({_id: req.params.id},
@@ -61,7 +58,14 @@ module.exports = {
         .catch((err)=>{
           console.log(err);
           res.status(400).json(err);
-        })
-    },
+        });
+    };
 
-}
+    module.export = {
+      createAuthor,
+      getOneAuthor,
+      getAllAuthors,
+
+    }
+
+};
