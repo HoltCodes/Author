@@ -7,4 +7,4 @@ module.exports = (app) => {
   app.put('/api/authors/:id', AuthorController.editAuthor);
   app.delete('/api/authors/:id', AuthorController.deleteAuthor);
   app.get('/api/authors/:id', AuthorController.getOneAuthor);
-};
+}

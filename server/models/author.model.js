@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 
-const AuthorSchema = {
+const AuthorSchema = new mongoose.Schema({
 
   authorName:{
     type: String,
     required:[true, "Must have a name entered"],
     minLength:[3, "Author name must be at least 3 characters"],
-  },
-};
+  }
+}, {timestamps:true})
 
-module.exports = mongoose.model("Author", AuthorSchema);
+const Author = mongoose.model("Author", AuthorSchema);
+
+module.exports = Author;

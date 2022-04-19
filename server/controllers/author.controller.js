@@ -1,8 +1,8 @@
-const Author = require('../models/author.model');
+const Author = require("../models/author.model.js");
 
   const createAuthor = (req, res) => {
       Author.create(req.body)
-        .then((newAuthor)=>{
+        .then((newAuthor) => {
           console.log(newAuthor);
           res.json({ newAuthor });
         })
@@ -13,8 +13,8 @@ const Author = require('../models/author.model');
     };
 
   const getOneAuthor = (req, res) => {
-      Author.findById({ _id: req.params.id })
-      .then((queriedAuthor) => {
+      Author.findOne({ _id: req.params.id })
+      .then((oneAuthor) => {
         res.json(oneAuthor);
       })
       .catch((err)=>{
