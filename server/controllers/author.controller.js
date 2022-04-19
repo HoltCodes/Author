@@ -1,51 +1,51 @@
 const Author = require('../models/author.model');
 
-    createAuthor: (req, res)=> {
+  const createAuthor = (req, res) => {
       Author.create(req.body)
         .then((newAuthor)=>{
           console.log(newAuthor);
-          res.json(newAuthor)
+          res.json({ newAuthor });
         })
         .catch((err)=>{
           console.log(err);
-          res.status(400).json(err);
+          res.status(400).json({err});
         });
     };
 
-    getOneAuthor: (req, res)=>{
-      Author.findById({_id: req.params.id})
-      .then((oneAuthor)=>{
+  const getOneAuthor = (req, res) => {
+      Author.findById({ _id: req.params.id })
+      .then((queriedAuthor) => {
         res.json(oneAuthor);
       })
       .catch((err)=>{
         console.log(err);
-        res.status(400).json(err);
+        res.status(400).json({ err });
       })
     };
 
-    getAllAuthors: (req, res) =>{
+  const getAllAuthors = (req, res) => {
       Author.find({})
       .then((allAuthors)=>{
         res.json(allAuthors);
       })
       .catch((err)=>{
         console.log(err);
-        res.status(400).json(err);
+        res.status(400).json({ err });
       })
     };
 
-    deleteAuthor: (req, res)=>{
+  const deleteAuthor = (req, res) => {
       Author.deleteOne({_id: req.params.id})
       .then((deleteAuthor)=>{
-        res.json(deleteAuthor);
+        res.json({ deleteAuthor });
       })
       .catch((err)=>{
         console.log(err);
-        res.status(400).json(err);
+        res.status(400).json({ err });
       })
     };
 
-    editAuthor: (req, res) =>{
+  const editAuthor = (req, res) => {
       Author.findByIdAndUpdate({_id: req.params.id},
         req.body,
         {
@@ -53,11 +53,11 @@ const Author = require('../models/author.model');
           runValidators:true
         })
         .then((updateAuthor)=>{
-          res.json(updateAuthor);
+          res.json({ updateAuthor });
         })
         .catch((err)=>{
           console.log(err);
-          res.status(400).json(err);
+          res.status(400).json({ err });
         });
     };
 
@@ -65,7 +65,6 @@ const Author = require('../models/author.model');
       createAuthor,
       getOneAuthor,
       getAllAuthors,
-
-    }
-
-};
+      deleteAuthor,
+      editAuthor,
+    };
