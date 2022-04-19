@@ -1,12 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 
-const NewAuthor =  () => {
+const NewAuthor =  (props) => {
   const [errors, setErrors] = useState({});
   const [authorName, setAuthorName] = useState("");
   const navigate = useNavigate();
-  const submitHandler = (e) =>{
+  const newSubmitHandler = (e) =>{
     e.preventDefault();
     axios
     .post(`http://localhost:8000/api/authors`, { authorName })
@@ -23,20 +23,19 @@ const NewAuthor =  () => {
     return(
       <div className="container">
       <div className="row">
-        <div className="col-4">
+        <div className="col-8">
           <Link to="/">Home</Link>
-          <form onSubmit={submitHandler}>
+          <form onSubmit={newSubmitHandler}>
             <div className="form-group">
               <label htmlFor="authorName">Name</label>
               <input
-                type="text"
-                className="form-control"
                 onChange={(e) => setAuthorName(e.target.value)}
+                name="authorName"
                 value={authorName}
               />
-              {errors.authorName ? <p>{errors.authorName.message}</p> : null}
+               {errors.authorName ? <p>{errors.authorName.message}</p> : null} 
             </div>
-            <button className="btn btn-primary" type="submit">
+            <button className="btn btn-primary" type="submit" value="authorName">
               Submit
             </button>
           </form>
